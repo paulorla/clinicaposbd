@@ -71,8 +71,43 @@ public class PessoaDAO implements IGenericDAO<Pessoa, Integer>{
 	}
 
 	public void persistir(Pessoa objeto) throws Exception {
-		// TODO Auto-generated method stub
-		
+		Connection con = null;
+		PreparedStatement statement = null;
+		Exception ex = null;
+		try{
+			con = ConnectionFactory.getConnection();
+			
+			String sql = "INSERT INTO PESSOA "
+					+ "(cpf,nome,nascimento) VALUES (?,?,?)";
+			statement = con.prepareStatement(sql);
+			statement.setLong(1, objeto.getCpf());
+			statement.setString(2, objeto.getNome());
+			if(objeto.getNascimento() != null)
+				statement.setDate(3, new java.sql.Date(objeto.getNascimento().getTime()));
+			else
+				statement.setDate(3, null);
+			
+			statement.executeUpdate();
+			return;
+		}catch(Exception e){
+			ex = e;
+		}finally{
+			if(statement!=null){
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					ex = e;
+				}
+			}
+			if(con!=null){
+				try {
+					con.close();
+				} catch (SQLException e) {
+					ex = e;
+				}
+			}
+		}
+		throw ex;
 	}
 
 	public void remover(Integer id) throws Exception {

@@ -75,8 +75,7 @@ public class AnimalDAO implements IGenericDAO<Animal, Integer>{
 	}
 
 	public void persistir(Animal objeto) throws Exception {
-		// TODO Auto-generated method stub
-		
+				
 	}
 
 	public void remover(Integer id) throws Exception {
