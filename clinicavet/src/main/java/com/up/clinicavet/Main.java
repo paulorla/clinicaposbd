@@ -13,15 +13,14 @@ public class Main {
 		
 		try{
 			Pessoa p = new Pessoa();
-			p.setCpf(676767);
+			p.setCpf(56780);
 			p.setNascimento(new Date());
-			p.setNome("Maria");
-			p.setId(345);
+			p.setNome("Marian");
 			
 			PessoaDAO pessoaDAO = new PessoaDAO();
 			pessoaDAO.persistir(p);
 			
-			
+			System.out.println(p.getId());
 		}catch(Exception e){
 			e.printStackTrace();
 		}

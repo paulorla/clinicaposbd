@@ -5,7 +5,7 @@ import java.util.Date;
 public class Animal {
 	
 	private int id;
-	//private TipoAnimal tipo;
+	private TipoAnimal tipo;
 	private Pessoa dono;
 	private String nome;
 	private Date nascimento;
@@ -15,6 +15,12 @@ public class Animal {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public TipoAnimal getTipo() {
+		return tipo;
+	}
+	public void setTipo(TipoAnimal tipo) {
+		this.tipo = tipo;
 	}
 	public Pessoa getDono() {
 		return dono;

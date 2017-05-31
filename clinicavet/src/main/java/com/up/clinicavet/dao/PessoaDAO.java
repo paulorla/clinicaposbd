@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,13 +74,14 @@ public class PessoaDAO implements IGenericDAO<Pessoa, Integer>{
 	public void persistir(Pessoa objeto) throws Exception {
 		Connection con = null;
 		PreparedStatement statement = null;
+		ResultSet keys = null;
 		Exception ex = null;
 		try{
 			con = ConnectionFactory.getConnection();
 			
 			String sql = "INSERT INTO PESSOA "
 					+ "(cpf,nome,nascimento) VALUES (?,?,?)";
-			statement = con.prepareStatement(sql);
+			statement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			statement.setLong(1, objeto.getCpf());
 			statement.setString(2, objeto.getNome());
 			if(objeto.getNascimento() != null)
@@ -88,6 +90,11 @@ public class PessoaDAO implements IGenericDAO<Pessoa, Integer>{
 				statement.setDate(3, null);
 			
 			statement.executeUpdate();
+			keys = statement.getGeneratedKeys();
+			if(keys.next())
+				objeto.setId(keys.getInt(1));
+			else
+				throw new Exception("Falha ao inserir o item");
 			return;
 		}catch(Exception e){
 			ex = e;
