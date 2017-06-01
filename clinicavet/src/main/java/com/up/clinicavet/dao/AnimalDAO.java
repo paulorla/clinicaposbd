@@ -9,6 +9,7 @@ import java.util.List;
 import com.up.clinicavet.jdbc.factory.ConnectionFactory;
 import com.up.clinicavet.model.Animal;
 import com.up.clinicavet.model.Pessoa;
+import com.up.clinicavet.model.TipoAnimal;
 
 public class AnimalDAO implements IGenericDAO<Animal, Integer>{
 
@@ -42,13 +43,21 @@ public class AnimalDAO implements IGenericDAO<Animal, Integer>{
 			if(rs.next()){
 				retorno = new Animal();
 				retorno.setId(id);
-				
-				retorno.setNome(rs.getString("nome"));
-				retorno.setNascimento(rs.getDate("nascimento"));
+				retorno.setNome(rs.getString("nomeAnimal"));
+				retorno.setNascimento(rs.getDate("nascimentoAnimal"));
 				
 				Pessoa p = new Pessoa();
-				p.setId(rs.getInt("pessoa_id"));
+				p.setId(rs.getInt("PESSOA_ID"));
+				p.setCpf(rs.getLong("CPF"));
+				p.setNome(rs.getString("nomePessoa"));
+				p.setNascimento(rs.getDate("nascimentoPessoa"));
 				retorno.setDono(p);
+				
+				TipoAnimal ta = new TipoAnimal();
+				ta.setId(rs.getInt("TIPOANIMAL_ID"));
+				ta.setNomeRaca(rs.getString("NOMERACA"));
+				ta.setDescricao(rs.getString("descricaoRaca"));
+				retorno.setTipo(ta);
 			}
 			
 			return retorno;
