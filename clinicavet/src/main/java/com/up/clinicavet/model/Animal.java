@@ -1,6 +1,7 @@
 package com.up.clinicavet.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Animal {
 	
@@ -9,9 +10,16 @@ public class Animal {
 	private Pessoa dono;
 	private String nome;
 	private Date nascimento;
+	private List<VacinaAnimal> vacinasAnimal;
 	
 	public int getId() {
 		return id;
+	}
+	public List<VacinaAnimal> getVacinasAnimal() {
+		return vacinasAnimal;
+	}
+	public void setVacinasAnimal(List<VacinaAnimal> vacinasAnimal) {
+		this.vacinasAnimal = vacinasAnimal;
 	}
 	public void setId(int id) {
 		this.id = id;
