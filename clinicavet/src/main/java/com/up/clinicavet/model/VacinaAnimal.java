@@ -3,28 +3,35 @@ package com.up.clinicavet.model;
 import java.util.Date;
 
 public class VacinaAnimal {
-	private Animal animal;
-	private Vacina vacina;
-	private Date dataVacinacao;
+	private VacinaAnimalID id;
 	private String descricaoVeterinario;
 	
+	public VacinaAnimal() {
+		id = new VacinaAnimalID();
+	}
+	public VacinaAnimalID getId() {
+		return id;
+	}
+	public void setId(VacinaAnimalID id) {
+		this.id = id;
+	}
 	public Animal getAnimal() {
-		return animal;
+		return id.getAnimal();
 	}
 	public void setAnimal(Animal animal) {
-		this.animal = animal;
+		id.setAnimal(animal);
 	}
 	public Vacina getVacina() {
-		return vacina;
+		return id.getVacina();
 	}
 	public void setVacina(Vacina vacina) {
-		this.vacina = vacina;
+		id.setVacina(vacina);
 	}
 	public Date getDataVacinacao() {
-		return dataVacinacao;
+		return id.getDataVacinacao();
 	}
 	public void setDataVacinacao(Date dataVacinacao) {
-		this.dataVacinacao = dataVacinacao;
+		id.setDataVacinacao(dataVacinacao);
 	}
 	public String getDescricaoVeterinario() {
 		return descricaoVeterinario;

@@ -11,9 +11,16 @@ public class Animal {
 	private String nome;
 	private Date nascimento;
 	private List<VacinaAnimal> vacinasAnimal;
+	private List<Alergia> alergias;
 	
 	public int getId() {
 		return id;
+	}
+	public List<Alergia> getAlergias() {
+		return alergias;
+	}
+	public void setAlergias(List<Alergia> alergias) {
+		this.alergias = alergias;
 	}
 	public List<VacinaAnimal> getVacinasAnimal() {
 		return vacinasAnimal;
