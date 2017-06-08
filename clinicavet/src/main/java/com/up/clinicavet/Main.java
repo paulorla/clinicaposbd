@@ -1,26 +1,24 @@
 package com.up.clinicavet;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
-import com.up.clinicavet.dao.AnimalDAO;
-import com.up.clinicavet.dao.IGenericDAO;
-import com.up.clinicavet.dao.PessoaDAO;
-import com.up.clinicavet.dao.VacinaAnimalDAO;
-import com.up.clinicavet.model.Animal;
 import com.up.clinicavet.model.Pessoa;
-import com.up.clinicavet.model.TipoAnimal;
 
 public class Main {
-	public static void main(String[] args) {		
+	public static void main(String[] args) {
 		try{
-			Animal a;
-			AnimalDAO animalDAO = new AnimalDAO();
-			a = animalDAO.buscar(0);
+			EntityManagerFactory factory = 
+					Persistence.createEntityManagerFactory("clinica_pu");
+			EntityManager em = factory.createEntityManager();
 			
-			System.out.println(a.getNome());			
+			Pessoa p = null;
+			em.getTransaction().begin();
+			p = em.find(Pessoa.class, 1);
+			em.getTransaction().commit();
 			
+			System.out.println(p.getNome());
 		}catch(Exception e){
 			e.printStackTrace();
 		}
