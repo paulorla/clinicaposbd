@@ -8,6 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,12 +23,20 @@ public class Animal {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	//private TipoAnimal tipo;
-	//private Pessoa dono;
+	@ManyToOne
+	@JoinColumn(name = "pessoa_id",nullable=false)
+	private Pessoa dono;
 	@Column(nullable=false)
 	private String nome;
 	private Date nascimento;
 	//private List<VacinaAnimal> vacinasAnimal;
-	//private List<Alergia> alergias;
+	@ManyToMany
+	@JoinTable(name="alergiaanimal",
+				joinColumns={
+						@JoinColumn(name="animal_id",referencedColumnName="animal_id")},
+				inverseJoinColumns={
+						@JoinColumn(name="alergia_id",referencedColumnName="alergia_id")})
+	private List<Alergia> alergias;
 	
 	public int getId() {
 		return id;
@@ -32,12 +44,12 @@ public class Animal {
 	public void setId(int id) {
 		this.id = id;
 	}
-//	public List<Alergia> getAlergias() {
-//		return alergias;
-//	}
-//	public void setAlergias(List<Alergia> alergias) {
-//		this.alergias = alergias;
-//	}
+	public List<Alergia> getAlergias() {
+		return alergias;
+	}
+	public void setAlergias(List<Alergia> alergias) {
+		this.alergias = alergias;
+	}
 //	public List<VacinaAnimal> getVacinasAnimal() {
 //		return vacinasAnimal;
 //	}
@@ -50,12 +62,12 @@ public class Animal {
 //	public void setTipo(TipoAnimal tipo) {
 //		this.tipo = tipo;
 //	}
-//	public Pessoa getDono() {
-//		return dono;
-//	}
-//	public void setDono(Pessoa dono) {
-//		this.dono = dono;
-//	}
+	public Pessoa getDono() {
+		return dono;
+	}
+	public void setDono(Pessoa dono) {
+		this.dono = dono;
+	}
 	public String getNome() {
 		return nome;
 	}

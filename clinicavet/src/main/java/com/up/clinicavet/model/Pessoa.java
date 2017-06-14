@@ -1,12 +1,15 @@
 package com.up.clinicavet.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,6 +25,8 @@ public class Pessoa {
 	private String nome;
 	@Column(nullable=true)
 	private Date nascimento;
+	@OneToMany(mappedBy="dono")
+	private List<Animal> animais;
 	
 	public int getId() {
 		return id;
@@ -47,7 +52,12 @@ public class Pessoa {
 	public void setNascimento(Date nascimento) {
 		this.nascimento = nascimento;
 	}
-	
+	public List<Animal> getAnimais() {
+		return animais;
+	}
+	public void setAnimais(List<Animal> animais) {
+		this.animais = animais;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
