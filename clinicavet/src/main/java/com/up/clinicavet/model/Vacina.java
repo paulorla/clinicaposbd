@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,7 +20,8 @@ public class Vacina {
 	@Column(nullable=false)
 	private String nome;
 	private String descricao;
-	//private List<VacinaAnimal> vacinasAnimal;
+	@OneToMany(mappedBy="id.vacina")
+	private List<VacinaAnimal> vacinasAnimal;
 	
 	public int getId() {
 		return id;
@@ -39,12 +41,12 @@ public class Vacina {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-//	public List<VacinaAnimal> getVacinasAnimal() {
-//		return vacinasAnimal;
-//	}
-//	public void setVacinasAnimal(List<VacinaAnimal> vacinasAnimal) {
-//		this.vacinasAnimal = vacinasAnimal;
-//	}
+	public List<VacinaAnimal> getVacinasAnimal() {
+		return vacinasAnimal;
+	}
+	public void setVacinasAnimal(List<VacinaAnimal> vacinasAnimal) {
+		this.vacinasAnimal = vacinasAnimal;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
