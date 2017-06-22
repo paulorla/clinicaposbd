@@ -12,10 +12,8 @@ public class Main {
 		PessoaDAO pessoaDAO = new PessoaDAO();
 		try {
 			pessoaDAO.beginTransaction();
-			List<Pessoa> pessoas = pessoaDAO.listar();
-			for(Pessoa p : pessoas)
-				System.out.println(p.getNome());
-			
+			Pessoa p = pessoaDAO.findByCPF(111L);
+			System.out.println(p.getNome());
 			
 			pessoaDAO.commitAndCloseTransaction();
 		} catch (Exception e) {

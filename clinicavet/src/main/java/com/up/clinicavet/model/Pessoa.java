@@ -9,11 +9,18 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="PESSOA")
+@NamedQueries({
+@NamedQuery (name="Pessoa.findBycpf", query = "Select p FROM Pessoa p where p.cpf = :cpf" ),
+@NamedQuery(name="Pessoa.listSemDataNascimento",
+query="SELECT p FROM Pessoa p WHERE p.nascimento is null")
+})
 public class Pessoa {
 	@Id
 	@Column(name="pessoa_id")
