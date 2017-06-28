@@ -14,13 +14,14 @@ import com.up.clinicavet.model.TipoAnimal;
 public class Main {
 	public static void main(String[] args) {
 		try {
-			Pessoa p = new Pessoa();
-			p.setCpf(22233);
-			p.setNascimento(new Date());
-			p.setNome("Teste");
 			
 			PessoaFacade pf = new PessoaFacade();
-			pf.save(p);
+			Pessoa p = pf.buscarEager(0);
+			
+			System.out.println(p.getNome());
+			
+			for(Animal a : p.getAnimais())
+				System.out.println("\t" + a.getNome());
 			
 		} catch (Exception e) {
 			e.printStackTrace();
