@@ -11,7 +11,7 @@ public class PessoaFacade implements IFacadeDAO<Integer, Pessoa>{
 	public void salvar(Pessoa objeto) {
 		try {
 			dao.beginTransaction();
-			dao.save(pessoa);
+			dao.save(objeto);
 			dao.commitAndCloseTransaction();
 		} catch (Exception e) {
 			dao.rollbackAndCloseTransaction();
