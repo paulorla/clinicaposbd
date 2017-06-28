@@ -23,7 +23,7 @@ public class Animal {
 	@Id
 	@Column(name="animal_id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "tipo_id",nullable=false)
 	private TipoAnimal tipo;
@@ -43,10 +43,10 @@ public class Animal {
 						@JoinColumn(name="alergia_id",referencedColumnName="alergia_id")})
 	private List<Alergia> alergias;
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public List<Alergia> getAlergias() {
